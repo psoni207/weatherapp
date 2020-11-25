@@ -1,8 +1,63 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
-<h1> Hello </h1>
+{% if res %}
+	{% if res == "ERROR" %}
+		<div class="alert alert-dark" role="alert">
+  			Either something went wrong OR city you entered is not valid.
+		</div>
+	{% else %}
+		<div class="page-content page-container" id="page-content">
+		    <div class="padding">
+		        <div class="row container d-flex justify-content-center">
+		            <div class="col-lg-8 grid-margin stretch-card">
+		                <!--weather card-->
+		                <div class="card card-weather">
+		                    <div class="card-body">
+		                        <div class="weather-date-location">
+		                            <h3> {{ res.day }}</h3>
+		                            <p class="text-gray"> 
+		                            	<span class="weather-date"> {{ res.date }} </span> 
+		                            	<span class="weather-location"> {{ res.city }}, {{ res.country }} </span></br> 
+		                            	<p class="light-text">Last updated time: {{ res.time }}</p>
+		                        </div>
+		                        <div class="weather-data d-flex">
+		                            <div class="mr-auto">
+		                                <h4 class="display-3"> {{ res.temp }} <span class="symbol">°</span>C</h4>
+		                                <p>Weather Details</p>
+					                    <div class="row px-3">
+					                        <p class="light-text">Cloudy</p>
+					                        <p class="ml-auto">{{ res.cloudy }}%</p>
+					                    </div>
+					                    <div class="row px-3">
+					                        <p class="light-text">Humidity</p>
+					                        <p class="ml-auto">{{ res.humidity }}%</p>
+					                    </div>
+					                    <div class="row px-3">
+					                        <p class="light-text">Wind</p>
+					                        <p class="ml-auto">{{ res.wind }}m/s</p>
+					                    </div>
+					                    <div class="row px-3">
+					                        <p class="light-text">Pressure</p>
+					                        <p class="ml-auto">{{ res.pressure }}mbar</p>
+					                    </div>
+					                    <div class="row px-3">
+					                        <p class="light-text">Sky</p>
+					                        <p class="ml-auto">{{ res.weather }}</p>
+					                    </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		                <!--weather card ends-->
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	{% endif %}
+{% endif %}
+
+<br/>
 
 {% endblock %}
